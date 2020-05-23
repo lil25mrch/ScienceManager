@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using LinqToDB;
 using LinqToDB.Data;
 using LinqToDB.DataProvider.PostgreSQL;
@@ -17,12 +18,12 @@ namespace ScienceManager.DAL.Context {
             return GetTable<TSource>();
         }
 
-        public int InsertWithInt32Identity<TSource>(TSource source) where TSource : class {
-            return DataExtensions.InsertWithInt32Identity(this, source);
+        public async Task<int> InsertWithInt32IdentityAsync<TSource>(TSource source) where TSource : class {
+            return await DataExtensions.InsertWithInt32IdentityAsync(this, source);
         }
 
-        public int Update<TSource>(TSource source) where TSource : class {
-            return DataExtensions.Update(this, source);
+        public async Task<int>  Update<TSource>(TSource source) where TSource : class {
+            return await  DataExtensions.UpdateAsync(this, source);
         }
     }
 }

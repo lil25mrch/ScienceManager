@@ -1,22 +1,15 @@
-﻿using LinqToDB.Common;
-using LinqToDB.Mapping;
+﻿using LinqToDB.Mapping;
 
 namespace ScienceManager.DAL.Entities {
     [Table("department")]
-    public class Department : BaseEntity {
-        public Department() {
-            Name = "Default";
-        }
+    public class Department {
+        [Column("id")]
+        [Identity]
+        [PrimaryKey]
+
+        public int Id { get; set; }
 
         [Column(Name = "name", CanBeNull = false)]
         public string Name { get; set; }
-
-        public override bool Verify() {
-            if (Name.IsNullOrEmpty()) {
-                return false;
-            }
-
-            return true;
-        }
     }
 }

@@ -1,16 +1,14 @@
 ﻿using System;
-using LinqToDB.Common;
 using LinqToDB.Mapping;
 
 namespace ScienceManager.DAL.Entities {
     [Table(Name = "employee")]
-    public class Employee : BaseEntity {
-        public Employee() {
-            Surname = "Default";
-            Name = "Default";
-            Patronymic = "Default";
-            Birthday = DateTime.Now;
-        }
+    public class Employee {
+        [Column("id")]
+        [Identity]
+        [PrimaryKey]
+
+        public int Id { get; set; }
 
         [Column("surname", CanBeNull = false)]
         public string Surname { get; set; }
@@ -22,7 +20,7 @@ namespace ScienceManager.DAL.Entities {
         public string Patronymic { get; set; }
 
         [Column("department", CanBeNull = false)]
-        public int? Department { get; set; }
+        public int? DepartmentId { get; set; }
 
         [Column("birthday", CanBeNull = false)]
         public DateTime Birthday { get; set; }
@@ -32,21 +30,5 @@ namespace ScienceManager.DAL.Entities {
 
         [Column(Name = "details", CanBeNull = false)]
         public string Details { get; set; }
-
-        public override bool Verify() {
-            if (Surname.IsNullOrEmpty() || Name.IsNullOrEmpty()) {
-                return false;
-            }
-
-            if (Birthday >= DateTime.Now) {
-                return false;
-            }
-            if (Department < 1) {
-                return false;
-            }
-
-
-            return true;
-        }
     }
 }

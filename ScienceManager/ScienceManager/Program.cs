@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
 using Ninject;
+using ScienceManager.Options;
 
 namespace ScienceManager {
     static class Program {
         public static StandardKernel Kernel;
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
