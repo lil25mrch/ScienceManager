@@ -27,7 +27,7 @@ namespace ScienceManager.DAL.Providers {
         /// <summary>
         /// Получить список значений таблицы
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Список значений</returns>
         public async Task<List<TEntity>> GetAll() {
             using (IDataConnection connection = _connectionFactory.Create()) {
                 return await connection.From<TEntity>().ToListAsync();
@@ -35,10 +35,10 @@ namespace ScienceManager.DAL.Providers {
         }
 
         /// <summary>
-        /// Удалить значение из таблицы
+        /// Удалить значения из таблицы
         /// </summary>
         /// <param name="predicate">Фильтр удаления записи</param>
-        /// <returns></returns>
+        /// <returns>Количество удаленных значений</returns>
         public async Task<int> Delete(Expression<Func<TEntity, bool>> predicate) {
             using (IDataConnection connection = _connectionFactory.Create()) {
                 var count = await connection.From<TEntity>().Where(predicate).DeleteAsync();
@@ -49,8 +49,8 @@ namespace ScienceManager.DAL.Providers {
         /// <summary>
         /// Изменить значение в таблице
         /// </summary>
-        /// <param name="entity">Название таблицы</param>
-        /// <returns></returns>
+        /// <param name="entity">Сущность для обновления</param>
+        /// <returns>Число измененных значений</returns>
         public async Task<int> Update(TEntity entity) {
             using (IDataConnection connection = _connectionFactory.Create()) {
                 int count = await connection.Update(entity);
@@ -61,8 +61,8 @@ namespace ScienceManager.DAL.Providers {
         /// <summary>
         /// Добавить значение в таблицу
         /// </summary>
-        /// <param name="entity">Название таблицы</param>
-        /// <returns></returns>
+        /// <param name="entity">Сущность для добавления</param>
+        /// <returns>ID сущности</returns>
         public async Task<int> Insert(TEntity entity) {
             using (IDataConnection connection = _connectionFactory.Create()) {
                 int id = await connection.InsertWithInt32IdentityAsync(entity);

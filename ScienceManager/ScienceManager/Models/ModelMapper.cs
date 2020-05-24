@@ -6,6 +6,12 @@ namespace ScienceManager.Models {
     /// Интерфейс маппера моделей
     /// </summary>
     public interface IModelMapper {
+        /// <summary>
+        /// Маппинг одной модели в другую
+        /// </summary>
+        /// <param name="source">Входная модель</param>
+        /// <typeparam name="T">Тип результата</typeparam>
+        /// <returns>Результирующая модель</returns>
         T Map<T>(object source);
     }
 
@@ -28,11 +34,11 @@ namespace ScienceManager.Models {
         }
 
         /// <summary>
-        /// Преобразование сущности в модель
+        /// Маппинг одной модели в другую
         /// </summary>
-        /// <param name="source">Объект маппинга</param>
-        /// <typeparam name="T">Сущность данных</typeparam>
-        /// <returns>Преобразованная модель</returns>
+        /// <param name="source">Входная модель</param>
+        /// <typeparam name="T">Тип результата</typeparam>
+        /// <returns>Результирующая модель</returns>
         public T Map<T>(object source) {
             return _modelMapper.Map<T>(source);
         }

@@ -15,7 +15,7 @@ namespace ScienceManager {
         /// <summary>
         /// Конструктор класса
         /// </summary>
-        /// <param name="dbDepartment"></param>
+        /// <param name="dbDepartment">Провайдер Отделов</param>
         public AddDepartmentWindow(IDbProvider<Department> dbDepartment) {
             _dbDepartment = dbDepartment;
             InitializeComponent();
@@ -40,6 +40,7 @@ namespace ScienceManager {
             if (ValidateChildren(ValidationConstraints.Enabled)) {
                 try {
                     await AddDeparnment();
+                    MessageBox.Show("Не забудьте обновить таблицу");
                     Close();
                 } catch (Exception ex) {
                     MessageBox.Show($"При добавлении записи произошла ошибка");

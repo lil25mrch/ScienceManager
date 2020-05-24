@@ -11,7 +11,7 @@ namespace ScienceManager.DAL.Providers.Contracts {
         /// <summary>
         /// Получить список моделей сотрудников
         /// </summary>
-        /// <returns>Список моделей сотрудников после соединения с таблицей Отделы</returns>
+        /// <returns>Список моделей сотрудников</returns>
         Task<List<EmployeeModel>> GetAllWithDepartment();
     }
 }

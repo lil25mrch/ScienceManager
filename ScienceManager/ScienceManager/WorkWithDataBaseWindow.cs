@@ -26,9 +26,9 @@ namespace ScienceManager {
         /// <summary>
         /// Конструктор класса
         /// </summary>
-        /// <param name="dbEmployee"></param>
-        /// <param name="dbDepartment"></param>
-        /// <param name="modelMapper"></param>
+        /// <param name="dbEmployee">Провайдер Сотрудников</param>
+        /// <param name="dbDepartment">Провайдер Отделов</param>
+        /// <param name="modelMapper">Маппинг модели</param>
         public WorkWithDataBaseWindow(IEmploeeProvider dbEmployee,
                                       IDbProvider<Department> dbDepartment,
                                       IModelMapper modelMapper,
@@ -67,6 +67,7 @@ namespace ScienceManager {
             departmentBox.Items.Clear();
             foreach (string departmentKey in _departmentDictionary.Keys) {
                 departmentBox.Items.Add(departmentKey);
+                AddButtonOpen();
             }
         }
 
@@ -125,9 +126,10 @@ namespace ScienceManager {
             int employeeId = Int32.Parse(idLabel.Text);
             if (_employeeDictionary.ContainsKey(employeeId)) {
                 EmployeeModel employeeModel = GetDataFromForm();
+                employeeModel.Id = employeeId;
+                
                 Employee newEmployee = _modelMapper.Map<Employee>(employeeModel);
                 string departmentName = employeeModel.Department;
-
                 newEmployee.Id = employeeId;
                 newEmployee.DepartmentId = _departmentDictionary[departmentName];
 
@@ -148,9 +150,9 @@ namespace ScienceManager {
             if (ValidateChildren(ValidationConstraints.Enabled)) {
                 try {
                     await InsertEmployee();
-                    await InitialiseGrid();
+                    ClearForm();
                 } catch (Exception ex) {
-                    MessageBox.Show($"При добавлении записи произошла ошибка.");
+                    MessageBox.Show($"При добавлении записи произошла ошибка.{ex}");
                 }
             }
         }
@@ -162,9 +164,10 @@ namespace ScienceManager {
         /// <param name="e"></param>
         private async void DeleteButtonClick(object sender, EventArgs e) {
             if (ValidateChildren(ValidationConstraints.Enabled)) {
+                DeleteButton.Enabled = true;
                 try {
                     await DeleteEmployee();
-                    await InitialiseGrid();
+                    ClearForm();
                 } catch (Exception ex) {
                     MessageBox.Show($"При удалении записи произошла ошибка.");
                 }
@@ -178,9 +181,10 @@ namespace ScienceManager {
         /// <param name="e"></param>
         private async void UpdateButtonClick(object sender, EventArgs e) {
             if (ValidateChildren(ValidationConstraints.Enabled)) {
+                UpdateButton.Enabled = true;
                 try {
                     await UpdateEmployee();
-                    await InitialiseGrid();
+                    ClearForm();
                 } catch (Exception ex) {
                     MessageBox.Show($"При изменении записи произошла ошибка.");
                 }
@@ -208,10 +212,22 @@ namespace ScienceManager {
         private async void AddNewDepartmentButtonClick(object sender, EventArgs e) {
             try {
                 _addDepartmentWindow.ShowDialog();
-
-                await InitialiseGrid();
+                AddButtonOpen();
             } catch (Exception ex) {
                 MessageBox.Show($"При изменении записи произошла ошибка.");
+            }
+        }
+        /// <summary>
+        /// Кнопка очистить форму
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ClearFormButton_Click(object sender, EventArgs e) {
+            try {
+                ClearForm();
+                AddButtonOpen();
+            } catch (Exception ex) {
+                MessageBox.Show($"При очистке формы произошла ошибка.");
             }
         }
 
@@ -233,6 +249,22 @@ namespace ScienceManager {
             addressTextBox.Text = employee.Address;
             detailsTextBox.Text = employee.Details;
             departmentBox.SelectedItem = employee.Department;
+            AddButtonClose();
+        }
+
+        /// <summary>
+        /// Очистить форму
+        /// </summary>
+        private void ClearForm() {
+            idLabel.Text = "";
+            surnameTextBox.Text = "";
+            nameTextBox.Text = "";
+            patronymicTextBox.Text = "";
+            birthdayBox.Value = DateTime.Now;
+            addressTextBox.Text = "";
+            detailsTextBox.Text = "";
+            departmentBox.SelectedIndex = 1;
+            AddButtonOpen();
         }
 
         /// <summary>
@@ -317,6 +349,18 @@ namespace ScienceManager {
                 e.Cancel = false;
                 valueError.SetError(control, "");
             }
+        }
+
+        private void AddButtonOpen() {
+            AddButton.Enabled = true;
+            DeleteButton.Enabled = false;
+            UpdateButton.Enabled = false;
+        }
+
+        private void AddButtonClose() {
+            AddButton.Enabled = false;
+            DeleteButton.Enabled = true;
+            UpdateButton.Enabled = true;
         }
     }
 }

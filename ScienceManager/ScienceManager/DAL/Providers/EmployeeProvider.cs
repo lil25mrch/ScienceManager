@@ -27,7 +27,7 @@ namespace ScienceManager.DAL.Providers {
         /// <summary>
         /// Получить список моделей сотрудников
         /// </summary>
-        /// <returns> Список моделей сотрудников после соединения с таблицей Отделы</returns>
+        /// <returns> Список моделей сотрудников</returns>
         public async Task<List<EmployeeModel>> GetAllWithDepartment() {
             using (IDataConnection connection = _connectionFactory.Create()) {
                 return await connection.From<Employee>()

@@ -18,7 +18,7 @@ namespace ScienceManager.DAL.Factories {
         }
 
         /// <summary>
-        /// Создает подключение к базе данных
+        /// Создать подключение к базе данных
         /// </summary>
         /// <returns>Подключение к базе данных</returns>
         public IDataConnection Create() {

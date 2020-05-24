@@ -8,7 +8,7 @@ using ScienceManager.DAL.Context.Contracts;
 
 namespace ScienceManager.DAL.Context {
     /// <summary>
-    /// Класс для соединения с базой данных
+    /// Cоединение с базой данных
     /// </summary>
     internal class ScienceManagerDataConnection : DataConnection, IDataConnection {
         /// <summary>
@@ -35,7 +35,7 @@ namespace ScienceManager.DAL.Context {
         /// </summary>
         /// <param name="source">Экземпляр данных для добавления</param>
         /// <typeparam name="TSource">Сущность таблицы</typeparam>
-        /// <returns></returns>
+        /// <returns>ID сущности в базе</returns>
         public async Task<int> InsertWithInt32IdentityAsync<TSource>(TSource source) where TSource : class {
             return await DataExtensions.InsertWithInt32IdentityAsync(this, source);
         }
@@ -45,7 +45,7 @@ namespace ScienceManager.DAL.Context {
         /// </summary>
         /// <param name="source">Экземпляр данных для обновления</param>
         /// <typeparam name="TSource">Сущность таблицы</typeparam>
-        /// <returns></returns>
+        /// <returns>Количество обновленных записей</returns>
         public async Task<int> Update<TSource>(TSource source) where TSource : class {
             return await DataExtensions.UpdateAsync(this, source);
         }

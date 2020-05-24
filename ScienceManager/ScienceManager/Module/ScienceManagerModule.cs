@@ -12,6 +12,9 @@ namespace ScienceManager.Module {
     /// Модуль зависимостей
     /// </summary>
     public class ScienceManagerModule : NinjectModule {
+        /// <summary>
+        /// Загрузить зависимости
+        /// </summary>
         public override void Load() {
             Bind<IDataConnectionFactory>().ToMethod(e => new DataConnectionFactory(ConfigurationManager.AppSettings["connectionString"]));
             Bind<IEmploeeProvider>().To<EmployeeProvider>().InSingletonScope();

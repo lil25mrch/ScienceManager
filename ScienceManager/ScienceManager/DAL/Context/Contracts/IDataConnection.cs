@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace ScienceManager.DAL.Context.Contracts {
     /// <summary>
-    /// Интерфейс соединения с базой данных
+    /// Cоединение с базой данных
     /// </summary>
     internal interface IDataConnection : IDisposable {
         /// <summary>
@@ -19,7 +19,7 @@ namespace ScienceManager.DAL.Context.Contracts {
         /// </summary>
         /// <param name="source">Экземпляр данных для добавления</param>
         /// <typeparam name="TSource">Сущность таблицы</typeparam>
-        /// <returns></returns>
+        /// <returns>ID сущности в базе</returns>
         Task<int> InsertWithInt32IdentityAsync<TSource>(TSource source) where TSource : class;
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace ScienceManager.DAL.Context.Contracts {
         /// </summary>
         /// <param name="source">Экземпляр данных для обновления</param>
         /// <typeparam name="TSource">Сущность таблицы</typeparam>
-        /// <returns></returns>
+        /// <returns>Количество обновленных записей</returns>
         Task<int> Update<TSource>(TSource source) where TSource : class;
     }
 }

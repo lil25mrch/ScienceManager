@@ -60,6 +60,7 @@ namespace ScienceManager {
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.valueError = new System.Windows.Forms.ErrorProvider(this.components);
             this.RefreshButton = new System.Windows.Forms.Button();
+            this.ClearFormButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize) (this.EmployeeDataGrid)).BeginInit();
             this.dataWorkPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize) (this.valueError)).BeginInit();
@@ -154,6 +155,7 @@ namespace ScienceManager {
             // 
             // dataWorkPanel
             // 
+            this.dataWorkPanel.Controls.Add(this.ClearFormButton);
             this.dataWorkPanel.Controls.Add(this.addNewDepartment);
             this.dataWorkPanel.Controls.Add(this.DeleteButton);
             this.dataWorkPanel.Controls.Add(this.idLabel);
@@ -393,6 +395,16 @@ namespace ScienceManager {
             this.RefreshButton.UseVisualStyleBackColor = true;
             this.RefreshButton.Click += new System.EventHandler(this.RefreshButtonClick);
             // 
+            // ClearFormButton
+            // 
+            this.ClearFormButton.Location = new System.Drawing.Point(21, 698);
+            this.ClearFormButton.Name = "ClearFormButton";
+            this.ClearFormButton.Size = new System.Drawing.Size(79, 34);
+            this.ClearFormButton.TabIndex = 23;
+            this.ClearFormButton.Text = " —бросить";
+            this.ClearFormButton.UseVisualStyleBackColor = true;
+            this.ClearFormButton.Click += new System.EventHandler(this.ClearFormButton_Click);
+            // 
             // WorkWithDataBaseWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -443,6 +455,7 @@ namespace ScienceManager {
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.ErrorProvider valueError;
         private System.Windows.Forms.Button RefreshButton;
+        private System.Windows.Forms.Button ClearFormButton;
         private System.Windows.Forms.Button addNewDepartment;
     }
 }

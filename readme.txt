@@ -6,4 +6,3 @@
         <add key="connectionString" value="Server=localhost;User Id=postgres;Password=123;Database=science_manager;"/>
     </appSettings>
 
-
