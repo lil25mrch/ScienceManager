@@ -4,13 +4,13 @@ using ScienceManager.DAL.Factories.Contracts;
 
 namespace ScienceManager.DAL.Factories {
     /// <summary>
-    /// Фабрика подключений к данным
+    /// Фабрика подключений к базе данных
     /// </summary>
     internal class DataConnectionFactory : IDataConnectionFactory {
         private readonly string _connectionString;
 
         /// <summary>
-        /// Конструктор
+        /// Конструктор класса
         /// </summary>
         /// <param name="connectionString">конфиг</param>
         public DataConnectionFactory(string connectionString) {
@@ -18,9 +18,9 @@ namespace ScienceManager.DAL.Factories {
         }
 
         /// <summary>
-        /// Создает подключение к данным
+        /// Создает подключение к базе данных
         /// </summary>
-        /// <returns>подключение к данным</returns>
+        /// <returns>Подключение к базе данных</returns>
         public IDataConnection Create() {
             return new ScienceManagerDataConnection(_connectionString);
         }

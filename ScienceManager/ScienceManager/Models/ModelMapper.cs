@@ -3,10 +3,15 @@ using ScienceManager.DAL.Entities;
 using ScienceManager.Models;
 
 namespace ScienceManager {
+    /// <summary>
+    /// Интерфейс маппера моделей
+    /// </summary>
     public interface IModelMapper {
         T Map<T>(object source);
     }
-
+    /// <summary>
+    ///  Маппер моделей
+    /// </summary>
     public class ModelMapper : IModelMapper {
         private readonly IMapper modelMapper;
 

@@ -2,11 +2,11 @@
 
 namespace ScienceManager.DAL.Factories.Contracts {
     /// <summary>
-    /// Фабрика подключения к данным
+    /// Фабрика подключения к базе данных
     /// </summary>
     internal interface IDataConnectionFactory {
         /// <summary>
-        /// Создает подключение к данным
+        /// Создает подключение к базе данных
         /// </summary>
         /// <returns></returns>
         IDataConnection Create();

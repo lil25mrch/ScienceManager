@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Ninject;
-using ScienceManager.Options;
+using ScienceManager.Module;
 
 namespace ScienceManager {
     static class Program {
@@ -16,7 +16,7 @@ namespace ScienceManager {
             Kernel = new StandardKernel(module);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(Kernel.Get<ManagerWindow>());
+            Application.Run(Kernel.Get<WorkWithDataBaseWindow>());
         }
     }
 }
