@@ -14,18 +14,20 @@ namespace ScienceManager.DAL.Providers {
     /// </summary>
     internal class EmployeeProvider : DbProvider<Employee>, IEmploeeProvider {
         private readonly IDataConnectionFactory _connectionFactory;
-/// <summary>
-/// Конструктор класса
-/// </summary>
-/// <param name="connectionFactory"></param>
+
+        /// <summary>
+        /// Конструктор класса
+        /// </summary>
+        /// <param name="connectionFactory"></param>
         public EmployeeProvider(IDataConnectionFactory connectionFactory)
             : base(connectionFactory) {
             _connectionFactory = connectionFactory;
         }
-/// <summary>
-/// Получить список моделей
-/// </summary>
-/// <returns> Список моделей соединения таблиц Сотрудники и Отделы</returns>
+
+        /// <summary>
+        /// Получить список моделей сотрудников
+        /// </summary>
+        /// <returns> Список моделей сотрудников после соединения с таблицей Отделы</returns>
         public async Task<List<EmployeeModel>> GetAllWithDepartment() {
             using (IDataConnection connection = _connectionFactory.Create()) {
                 return await connection.From<Employee>()

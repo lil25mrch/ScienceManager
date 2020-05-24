@@ -8,7 +8,7 @@ namespace ScienceManager {
         public static StandardKernel Kernel;
 
         /// <summary>
-        /// The main entry point for the application.
+        /// Основная точка входа для приложения.
         /// </summary>
         [STAThread]
         static void Main() {

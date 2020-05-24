@@ -8,6 +8,10 @@ namespace ScienceManager.DAL.Providers.Contracts {
     /// Интерфейс провайдера к таблице Сотрудники
     /// </summary>
     public interface IEmploeeProvider : IDbProvider<Employee> {
+        /// <summary>
+        /// Получить список моделей сотрудников
+        /// </summary>
+        /// <returns>Список моделей сотрудников после соединения с таблицей Отделы</returns>
         Task<List<EmployeeModel>> GetAllWithDepartment();
     }
 }

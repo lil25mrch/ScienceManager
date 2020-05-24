@@ -5,6 +5,7 @@ using ScienceManager.DAL.Factories;
 using ScienceManager.DAL.Factories.Contracts;
 using ScienceManager.DAL.Providers;
 using ScienceManager.DAL.Providers.Contracts;
+using ScienceManager.Models;
 
 namespace ScienceManager.Module {
     /// <summary>

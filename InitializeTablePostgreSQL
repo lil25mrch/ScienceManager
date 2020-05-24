@@ -1,6 +1,6 @@
 CREATE TABLE department (
 id serial primary key,
-name VARCHAR(20) not null,
+name VARCHAR(20) not null);
 
 CREATE TABLE employee (
 id serial primary key,
@@ -10,4 +10,5 @@ patronymic VARCHAR(20) not null,
 department integer not null REFERENCES department (id),
 birthday date not null ,
 address VARCHAR(100) not null,
-details  VARCHAR(150) not null)
+details  VARCHAR(150) not null);
+

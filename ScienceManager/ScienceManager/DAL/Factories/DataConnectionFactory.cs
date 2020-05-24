@@ -12,7 +12,7 @@ namespace ScienceManager.DAL.Factories {
         /// <summary>
         /// Конструктор класса
         /// </summary>
-        /// <param name="connectionString">конфиг</param>
+        /// <param name="connectionString">Строка подключения к базе данных</param>
         public DataConnectionFactory(string connectionString) {
             _connectionString = connectionString;
         }

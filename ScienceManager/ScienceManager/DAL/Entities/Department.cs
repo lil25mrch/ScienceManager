@@ -2,7 +2,7 @@
 
 namespace ScienceManager.DAL.Entities {
     /// <summary>
-    /// Структура данных об отделах
+    /// Структура данных Отделы
     /// </summary>
     [Table("department")]
     public class Department {
@@ -12,7 +12,6 @@ namespace ScienceManager.DAL.Entities {
         [Column("id")]
         [Identity]
         [PrimaryKey]
-
         public int Id { get; set; }
 
         /// <summary>

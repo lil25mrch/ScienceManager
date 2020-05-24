@@ -8,7 +8,7 @@ namespace ScienceManager.DAL.Factories.Contracts {
         /// <summary>
         /// Создает подключение к базе данных
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Подключение к базе</returns>
         IDataConnection Create();
     }
 }

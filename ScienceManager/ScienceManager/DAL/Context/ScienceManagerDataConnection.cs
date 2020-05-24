@@ -24,7 +24,7 @@ namespace ScienceManager.DAL.Context {
         /// <summary>
         /// Запрос таблицы
         /// </summary>
-        /// <typeparam name="TSource"></typeparam>
+        /// <typeparam name="TSource">Сущность таблицы</typeparam>
         /// <returns>Запрашиваемая таблица</returns>
         public IQueryable<TSource> From<TSource>() where TSource : class {
             return GetTable<TSource>();
@@ -33,8 +33,8 @@ namespace ScienceManager.DAL.Context {
         /// <summary>
         /// Добавление данных
         /// </summary>
-        /// <param name="source"></param>
-        /// <typeparam name="TSource"></typeparam>
+        /// <param name="source">Экземпляр данных для добавления</param>
+        /// <typeparam name="TSource">Сущность таблицы</typeparam>
         /// <returns></returns>
         public async Task<int> InsertWithInt32IdentityAsync<TSource>(TSource source) where TSource : class {
             return await DataExtensions.InsertWithInt32IdentityAsync(this, source);
@@ -43,8 +43,8 @@ namespace ScienceManager.DAL.Context {
         /// <summary>
         /// Изменение данных
         /// </summary>
-        /// <param name="source"></param>
-        /// <typeparam name="TSource"></typeparam>
+        /// <param name="source">Экземпляр данных для обновления</param>
+        /// <typeparam name="TSource">Сущность таблицы</typeparam>
         /// <returns></returns>
         public async Task<int> Update<TSource>(TSource source) where TSource : class {
             return await DataExtensions.UpdateAsync(this, source);

@@ -3,7 +3,7 @@ using LinqToDB.Mapping;
 
 namespace ScienceManager.DAL.Entities {
     /// <summary>
-    /// Структура данных о сотрудниках
+    /// Структура данных Сотрудники
     /// </summary>
     [Table(Name = "employee")]
     public class Employee {
@@ -13,7 +13,6 @@ namespace ScienceManager.DAL.Entities {
         [Column("id")]
         [Identity]
         [PrimaryKey]
-
         public int Id { get; set; }
 
         /// <summary>

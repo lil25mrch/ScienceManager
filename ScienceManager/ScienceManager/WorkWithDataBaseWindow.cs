@@ -37,7 +37,7 @@ namespace ScienceManager {
             _dbDepartment = dbDepartment;
             _modelMapper = modelMapper;
             _addDepartmentWindow = addDepartmentWindow;
-            InitializeComponent(); 
+            InitializeComponent();
             InitialiseGrid();
         }
 
@@ -62,6 +62,7 @@ namespace ScienceManager {
                     DeleteButton.Enabled = true;
                 }
             }
+
             _departmentDictionary = _listDepartment.ToDictionary(e => e.Name, e => e.Id);
             departmentBox.Items.Clear();
             foreach (string departmentKey in _departmentDictionary.Keys) {
@@ -160,11 +161,13 @@ namespace ScienceManager {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private async void DeleteButtonClick(object sender, EventArgs e) {
-            try {
-                await DeleteEmployee();
-                await InitialiseGrid();
-            } catch (Exception ex) {
-                MessageBox.Show($"При удалении записи произошла ошибка.");
+            if (ValidateChildren(ValidationConstraints.Enabled)) {
+                try {
+                    await DeleteEmployee();
+                    await InitialiseGrid();
+                } catch (Exception ex) {
+                    MessageBox.Show($"При удалении записи произошла ошибка.");
+                }
             }
         }
 
@@ -174,11 +177,13 @@ namespace ScienceManager {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private async void UpdateButtonClick(object sender, EventArgs e) {
-            try {
-                await UpdateEmployee();
-                await InitialiseGrid();
-            } catch (Exception ex) {
-                MessageBox.Show($"При изменении записи произошла ошибка.");
+            if (ValidateChildren(ValidationConstraints.Enabled)) {
+                try {
+                    await UpdateEmployee();
+                    await InitialiseGrid();
+                } catch (Exception ex) {
+                    MessageBox.Show($"При изменении записи произошла ошибка.");
+                }
             }
         }
 
@@ -236,8 +241,7 @@ namespace ScienceManager {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void SurnameValidate(object sender, CancelEventArgs e) {
-            ControlValidate(surnameTextBox => string.IsNullOrWhiteSpace(surnameTextBox.Text), surnameTextBox, e, "Это обязательное поле");
-            ControlValidate(surnameTextBox => surnameTextBox.Text.Length > 20, surnameTextBox, e, "Слишком длинное значение");
+            ControlValidate(control => string.IsNullOrWhiteSpace(surnameTextBox.Text), surnameTextBox, e, "Это обязательное поле");
         }
 
         /// <summary>
@@ -246,8 +250,7 @@ namespace ScienceManager {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void NameValidate(object sender, CancelEventArgs e) {
-            ControlValidate(nameTextBox => string.IsNullOrWhiteSpace(nameTextBox.Text), nameTextBox, e, "Это обязательное поле");
-            ControlValidate(nameTextBox => nameTextBox.Text.Length > 20, nameTextBox, e, "Слишком длинное значение");
+            ControlValidate(control => string.IsNullOrWhiteSpace(nameTextBox.Text), nameTextBox, e, "Это обязательное поле");
         }
 
         /// <summary>
@@ -256,7 +259,7 @@ namespace ScienceManager {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void PatronymicValidate(object sender, CancelEventArgs e) {
-            ControlValidate(patronymicTextBox => patronymicTextBox.Text.Length > 20, patronymicTextBox, e, "Слишком длинное значение");
+            ControlValidate(control => patronymicTextBox.Text.Length > 20, patronymicTextBox, e, "Слишком длинное значение");
         }
 
         /// <summary>

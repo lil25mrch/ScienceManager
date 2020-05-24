@@ -42,7 +42,7 @@ namespace ScienceManager {
                     await AddDeparnment();
                     Close();
                 } catch (Exception ex) {
-                    MessageBox.Show($"При добавлении записи произошла ошибка {ex}");
+                    MessageBox.Show($"При добавлении записи произошла ошибка");
                 }
             }
         }

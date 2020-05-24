@@ -1,31 +1,40 @@
 ﻿using AutoMapper;
 using ScienceManager.DAL.Entities;
-using ScienceManager.Models;
 
-namespace ScienceManager {
+namespace ScienceManager.Models {
     /// <summary>
     /// Интерфейс маппера моделей
     /// </summary>
     public interface IModelMapper {
         T Map<T>(object source);
     }
+
     /// <summary>
-    ///  Маппер моделей
+    /// Маппер моделей
     /// </summary>
     public class ModelMapper : IModelMapper {
-        private readonly IMapper modelMapper;
+        private readonly IMapper _modelMapper;
 
+        /// <summary>
+        /// Конструктор класса
+        /// </summary>
         public ModelMapper() {
             var configuration = new MapperConfiguration(cfg => {
                 cfg.CreateMap<Employee, EmployeeModel>();
                 cfg.CreateMap<EmployeeModel, Employee>();
             });
 
-            modelMapper = configuration.CreateMapper();
+            _modelMapper = configuration.CreateMapper();
         }
 
+        /// <summary>
+        /// Преобразование сущности в модель
+        /// </summary>
+        /// <param name="source">Объект маппинга</param>
+        /// <typeparam name="T">Сущность данных</typeparam>
+        /// <returns>Преобразованная модель</returns>
         public T Map<T>(object source) {
-            return modelMapper.Map<T>(source);
+            return _modelMapper.Map<T>(source);
         }
     }
 }

@@ -59,7 +59,7 @@ namespace ScienceManager.DAL.Providers {
         }
 
         /// <summary>
-        /// Изменить значение в таблице
+        /// Добавить значение в таблицу
         /// </summary>
         /// <param name="entity">Название таблицы</param>
         /// <returns></returns>
