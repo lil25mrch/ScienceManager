@@ -47,8 +47,10 @@ namespace ScienceManager {
         private async Task InitialiseGrid() {
             var listEmployee = await _dbEmployee.GetAllWithDepartment();
             _employeeDictionary = listEmployee.ToDictionary(e => e.Id);
-            _bindingSource = new BindingSource {DataSource = _employeeDictionary.Values};
-            EmployeeDataGrid.DataSource = _bindingSource;
+            if (_employeeDictionary.Any()) {
+                _bindingSource = new BindingSource {DataSource = _employeeDictionary.Values};
+                EmployeeDataGrid.DataSource = _bindingSource;
+            }
             _listDepartment = await _dbDepartment.GetAll();
             if (_listDepartment.Count < 1 || _listDepartment == null) {
                 _addDepartmentWindow.ShowDialog();
@@ -98,10 +100,17 @@ namespace ScienceManager {
             newEmployee.DepartmentId = _departmentDictionary[departmentName];
 
             int id = await _dbEmployee.Insert(newEmployee);
-            newEmployee.Id = id;
+            employeeModel.Id = id;
 
             _employeeDictionary.Add(id, employeeModel);
-            _bindingSource.Add(employeeModel);
+
+            if (_bindingSource == null) {
+                _bindingSource = new BindingSource {DataSource = _employeeDictionary.Values};
+                EmployeeDataGrid.DataSource = _bindingSource;
+            } else {
+                _bindingSource.Add(employeeModel);
+            }
+            
         }
 
         /// <summary>
@@ -150,10 +159,10 @@ namespace ScienceManager {
             if (ValidateChildren(ValidationConstraints.Enabled)) {
                 try {
                     await InsertEmployee();
-                    ClearForm();
                 } catch (Exception ex) {
                     MessageBox.Show($"При добавлении записи произошла ошибка.{ex}");
                 }
+                ClearForm();
             }
         }
 
@@ -167,10 +176,10 @@ namespace ScienceManager {
                 DeleteButton.Enabled = true;
                 try {
                     await DeleteEmployee();
-                    ClearForm();
                 } catch (Exception ex) {
                     MessageBox.Show($"При удалении записи произошла ошибка.");
                 }
+                ClearForm();
             }
         }
 
@@ -184,10 +193,10 @@ namespace ScienceManager {
                 UpdateButton.Enabled = true;
                 try {
                     await UpdateEmployee();
-                    ClearForm();
                 } catch (Exception ex) {
                     MessageBox.Show($"При изменении записи произошла ошибка.");
                 }
+                ClearForm();
             }
         }
 
@@ -263,7 +272,7 @@ namespace ScienceManager {
             birthdayBox.Value = DateTime.Now;
             addressTextBox.Text = "";
             detailsTextBox.Text = "";
-            departmentBox.SelectedIndex = 1;
+            departmentBox.SelectedIndex = 0;
             AddButtonOpen();
         }
 
